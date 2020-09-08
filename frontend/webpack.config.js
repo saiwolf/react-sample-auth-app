@@ -21,10 +21,7 @@ module.exports = {
     },
     resolve: {
         mainFiles: ['index', 'Index'],
-        extensions: ['.js', '.jsx'],
-        alias: {
-            '@': path.resolve(__dirname, 'src/'),
-        }
+        extensions: ['.js', '.jsx']
     },
     plugins: [new HtmlWebpackPlugin({
         template: './src/index.html'
