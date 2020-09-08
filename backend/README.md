@@ -42,6 +42,8 @@ yarn
 You'll need a running instance of MongoDB.
 
 ```bash
+cd backend
+mkdir data
 mongod --dbpath=./data &
 ```
 
@@ -53,6 +55,7 @@ Rename `config.defaults.json` to `config.json` and edit the file to suit your en
 {
     "connectionString": "mongodb://localhost/node-mongo-signup-verification-api",
     "secret": "THIS IS USED TO SIGN AND VERIFY JWT TOKENS, REPLACE IT WITH YOUR OWN SECRET, IT CAN BE ANY STRING",
+    "clientUrl": "Client URL to allow connections from. Defaults to localhost:8080",
     "emailFrom": "info@node-mongo-signup-verification-api.com",
     "smtpOptions": {
         "host": "[ENTER YOUR OWN SMTP OPTIONS OR CREATE FREE TEST ACCOUNT IN ONE CLICK AT https://ethereal.email/]",
