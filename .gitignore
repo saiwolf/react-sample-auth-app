@@ -117,3 +117,7 @@ dist
 
 # MongoDB
 data/
+
+# config.json
+
+backend/config.json
