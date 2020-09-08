@@ -4,6 +4,8 @@ This is a fork of the [Node + MongoDB Signup Verification API](https://github.co
 
 It offers Verification Emails on sign up, Forgot and Reset Password functionality and JWT authentication.
 
+This API also has a [Swagger](https://swagger.io/) endpoint at `/api-docs`
+
 ## Differences
 
 1. [Morgan](https://github.com/expressjs/morgan) logger for ExpressJS is used.
@@ -56,3 +58,7 @@ Ensure you're in the `backend` directory.
 ```bash
 yarn start
 ```
+
+## Further Information
+
+See the [original article](https://jasonwatmore.com/post/2020/05/13/node-mongo-api-with-email-sign-up-verification-authentication-forgot-password) on Jason Watmore's site for an in-depth look on how this api works.

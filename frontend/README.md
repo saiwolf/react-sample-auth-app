@@ -12,16 +12,25 @@ It offers Verification Emails on sign up, Forgot and Reset Password functionalit
 
 ## Installation
 
+Clone this repo.
+
+```bash
+git clone https://github.com/saiwolf/react-sample-auth-app.git
+cd react-sample-auth-app
+```
+
 You can either use `npm` or `yarn` to restore packages.
 
 ```bash
-npm install
+cd frontend
+npm
 ```
 
 or
 
 ```bash
-yarn add
+cd frontend
+yarn
 ```
 
 ## Usage
@@ -42,3 +51,7 @@ Ensure you're in the `frontend` directory.
 ```bash
 yarn start
 ```
+
+## Further Information
+
+See the [original article](https://jasonwatmore.com/post/2020/04/22/react-email-sign-up-with-verification-authentication-forgot-password) on Jason Watmore's site for an in-depth look on how this app works.
