@@ -12,7 +12,7 @@ function Profile({ match }) {
             <div className="container">
                 <Switch>
                     <Route exact path={path} component={Details} />
-                    <route path={`${path}/update`} component={Update} />
+                    <Route path={`${path}/update`} component={Update} />
                 </Switch>
             </div>
         </div>

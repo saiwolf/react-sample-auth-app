@@ -24,12 +24,12 @@ function Alert({ id, fade }) {
                 // clear alerts when an empty alert is received
                 if (!alert.message) {
                     setAlerts(alerts => {
-                        // filter out alerts without 'keepAfterRouterChange' flag
+                        // filter out alerts without 'keepAfterRouteChange' flag
                         const filteredAlerts = alerts.filter(x => x.keepAfterRouteChange);
 
                         // remove 'keepAfterRouteChange' flag on the rest
                         filteredAlerts.forEach(x => delete x.keepAfterRouteChange);
-                        return filteredAlerts
+                        return filteredAlerts;
                     });
                 } else {
                     // add alert to array
@@ -41,7 +41,7 @@ function Alert({ id, fade }) {
                     }
                 }
             });
-        
+
         // clear alerts on location change
         const historyUnlisten = history.listen(({ pathname }) => {
             // don't clear if pathname has trailing slash because this will be auto redirected again
@@ -103,6 +103,7 @@ function Alert({ id, fade }) {
                 {alerts.map((alert, index) =>
                     <div key={index} className={cssClasses(alert)}>
                         <a className="close" onClick={() => removeAlert(alert)}>&times;</a>
+                        <span dangerouslySetInnerHTML={{ __html: alert.message }}></span>
                     </div>
                 )}
             </div>

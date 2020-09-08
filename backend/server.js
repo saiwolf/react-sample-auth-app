@@ -10,7 +10,11 @@ const morgan = require('morgan');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:8082',
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various smart TVs) choke on 204
+    credentials: true
+}));
 
 app.use(morgan('dev'));
 
