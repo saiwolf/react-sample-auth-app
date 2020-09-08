@@ -2,6 +2,7 @@ import { BehaviorSubject } from 'rxjs';
 
 import config from 'config';
 import { fetchWrapper, history } from '../_helpers';
+import { alertService } from './index';
 
 const userSubject = new BehaviorSubject(null);
 const baseUrl = `${config.apiUrl}/accounts`;
@@ -39,7 +40,8 @@ function logout() {
     fetchWrapper.post(`${baseUrl}/revoke-token`, {});
     stopRefreshTokenTimer();
     userSubject.next(null);
-    history.push('/account/login');
+    history.push('/');
+    alertService.success("You are now logged out!");
 }
 
 function refreshToken() {

@@ -10,11 +10,11 @@ module.exports = {
                 loader: 'babel-loader'
             },
             {
-                test: /\.less$/,
+                test: /\.s[c]ss$/,
                 use: [
                     { loader: 'style-loader' },
                     { loader: 'css-loader' },
-                    { loader: 'less-loader' }
+                    { loader: 'sass-loader' }
                 ]
             }
         ]

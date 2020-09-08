@@ -6,7 +6,7 @@ import { history } from './_helpers';
 import { accountService } from './_services';
 import { App } from './app';
 
-import './styles.less';
+import './styles.scss';
 
 // attempt silent token refresh before startup
 accountService.refreshToken().finally(startApp);

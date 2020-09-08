@@ -13,18 +13,18 @@ function Nav() {
     }, []);
 
     // only show nav when logged in
-    if (!user) return null;
+    if (!user) return LoggedOutNav();
 
     return (
         <div>
             <nav className="navbar navbar-expand navbar-dark bg-dark">
                 <div className="navbar-nav">
-                    <NavLink exact to="/" className="nav-item nav-link">Home</NavLink>
-                    <NavLink to="/profile" className="nav-item nav-link">Profile</NavLink>
+                    <NavLink exact to="/" className="nav-item nav-link">Home</NavLink>                    
+                    <NavLink to="/profile" className="nav-item nav-link">Profile</NavLink>                    
                     {user.role === Role.Admin &&
                         <NavLink to="/admin" className="nav-item nav-link">Admin</NavLink>
-                    }
-                    <a onClick={accountService.logout} className="nav-item nav-link">Logout</a>
+                    }                    
+                    <a onClick={accountService.logout} className="nav-item nav-link">Logout</a>                    
                 </div>
             </nav>
             <Route path="/admin" component={AdminNav} />
@@ -42,6 +42,18 @@ function AdminNav({ match }) {
             </div>
         </nav>
     );
+}
+
+function LoggedOutNav() {
+    return (
+        <nav className="navbar navbar-expand navbar-dark bg-dark">
+            <div className="navbar-nav">
+                <NavLink exact to="/" className="nav-item nav-link">Home</NavLink>                
+                <NavLink to="/account/login" className="nav-item nav-link">Login</NavLink>
+                <NavLink to="/account/register" className="nav-item nav-link">Register</NavLink>
+            </div>
+        </nav>
+    );    
 }
 
 export { Nav };

@@ -19,12 +19,12 @@ function App() {
     }, []);
 
     return (
-        <div className={'app-container' + (user && ' bg-light')}>
+        <div className={'app-container bg-light'}>
             <Nav />
             <Alert />
             <Switch>
                 <Redirect from="/:url*(/+)" to={pathname.slice(0, -1)} />
-                <PrivateRoute exact path="/" component={Home} />
+                <Route exact path="/" component={Home} />
                 <PrivateRoute path="/profile" component={Profile} />
                 <PrivateRoute path="/admin" roles={[Role.Admin]} component={Admin} />
                 <Route path="/account" component={Account} />
