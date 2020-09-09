@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
+import { Container, Row, Col, Card } from 'react-bootstrap';
+
 import { accountService } from '../_services';
 
 import { Login } from './Login';
@@ -20,21 +22,19 @@ function Account({ history, match }) {
     }, []);
 
     return (
-        <div className="container">
-            <div className="row">
-                <div className="col-sm-8 offset-sm-2 mt-5">
-                    <div className="card m-3">
-                        <Switch>
-                            <Route path={`${path}/login`} component={Login} />
-                            <Route path={`${path}/register`} component={Register} />
-                            <Route path={`${path}/verify-email`} component={VerifyEmail} />
-                            <Route path={`${path}/forgot-password`} component={ForgotPassword} />
-                            <Route path={`${path}/reset-password`} component={ResetPassword} />
-                        </Switch>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <Container>
+            <Row>
+                <Col className="mt-3" sm={8, { offset: 2 }}>                    
+                    <Switch>
+                        <Route path={`${path}/login`} component={Login} />
+                        <Route path={`${path}/register`} component={Register} />
+                        <Route path={`${path}/verify-email`} component={VerifyEmail} />
+                        <Route path={`${path}/forgot-password`} component={ForgotPassword} />
+                        <Route path={`${path}/reset-password`} component={ResetPassword} />
+                    </Switch>                    
+                </Col>
+            </Row>
+        </Container>
     );
 }
 
