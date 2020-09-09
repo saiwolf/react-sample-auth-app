@@ -2,9 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+
 import { accountService, alertService } from '../_services';
 
 function Register({ history }) {
+
     const initialValues = {
         title: '',
         firstName: '',
@@ -56,7 +58,7 @@ function Register({ history }) {
                     <div className="card-body">
                         <div className="form-group">
                             <label>Title</label>
-                            <Field name="title" as="select" className={'form-control' + (errors.title && touched.title ? 'is-invalid' : '')}>
+                            <Field name="title" as="select" autoComplete="honorific-prefix" className={'form-control' + (errors.title && touched.title ? 'is-invalid' : '')}>
                                 <option value=""></option>
                                 <option value="Mr">Mr</option>
                                 <option value="Mrs">Mrs</option>
@@ -68,35 +70,37 @@ function Register({ history }) {
                         <div className="form-row">
                             <div className="form-group col">
                                 <label>First Name</label>
-                                <Field name="firstName" type="text" className={'form-control' + (errors.firstName && touched.firstName ? ' is-invalid' : '')} />
+                                <Field name="firstName" type="text" autoComplete="given-name" className={'form-control' + (errors.firstName && touched.firstName ? ' is-invalid' : '')} />
                                 <ErrorMessage name="firstName" component="div" className="invalid-feedback" />
                             </div>
                             <div className="form-group col">
                                 <label>Last Name</label>
-                                <Field name="lastName" type="text" className={'form-control' + (errors.lastName && touched.lastName ? ' is-invalid' : '')} />
+                                <Field name="lastName" type="text" autoComplete="family-name" className={'form-control' + (errors.lastName && touched.lastName ? ' is-invalid' : '')} />
                                 <ErrorMessage name="lastName" component="div" className="invalid-feedback" />
                             </div>
                         </div>                        
                         <div className="form-group">
                             <label>Email</label>
-                            <Field name="email" type="email" className={'form-control' + (errors.email && touched.email ? 'is-invalid' : '')} />
+                            <Field name="email" type="email" autoComplete="email" className={'form-control' + (errors.email && touched.email ? 'is-invalid' : '')} />
                             <ErrorMessage name="email" component="div" className="invalid-feedback" />
                         </div>
                         <div className="form-row">
                             <div className="form-group col">
                                 <label>Password</label>
-                                <Field name="password" type="password" className={'form-control' + (errors.password && touched.password ? ' is-invalid' : '')} />
+                                <Field name="password" type="password" autoComplete="new-password" className={'form-control' + (errors.password && touched.password ? ' is-invalid' : '')} />
                                 <ErrorMessage name="password" component="div" className="invalid-feedback" />
                             </div>
                             <div className="form-group col">
                                 <label>Confirm Password</label>
-                                <Field name="confirmPassword" type="password" className={'form-control' + (errors.confirmPassword && touched.confirmPassword ? ' is-invalid' : '')} />
+                                <Field name="confirmPassword" type="password" autoComplete="new-password" className={'form-control' + (errors.confirmPassword && touched.confirmPassword ? ' is-invalid' : '')} />
                                 <ErrorMessage name="confirmPassword" component="div" className="invalid-feedback" />
                             </div>
                         </div>
                         <div className="form-group form-check">
                             <Field type="checkbox" name="acceptTerms" id="acceptTerms" className={'form-check-input ' + (errors.acceptTerms && touched.acceptTerms ? ' is-invalid' : '')} />
-                            <label htmlFor="acceptTerms" className="form-check-label">Accept Terms & Conditions</label>
+                            <label htmlFor="acceptTerms" className="form-check-label">
+                                Accept Terms and Conditions
+                            </label>
                             <ErrorMessage name="acceptTerms" component="div" className="invalid-feedback" />
                         </div>
                         <div className="form-group">

@@ -12,7 +12,7 @@ import './styles.scss';
 accountService.refreshToken().finally(startApp);
 
 function startApp() {
-    render(
+    render(        
         <Router history={history}>
             <App />
         </Router>,
