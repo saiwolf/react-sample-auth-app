@@ -15,7 +15,7 @@
     "formik": "^2.1.4",
     "history": "^4.10.1",
     "jquery": "^3.5.1",
-    "md5hex": "^1.0.0",
+    "md5-hex": "^3.0.1",
     "popper.js": "^1.16.1",
     "prop-types": "^15.7.2",
     "query-string": "^6.11.0",
