@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Helmet } from 'react-helmet';
+import { Button, Form, Col } from 'react-bootstrap';
+import { Formik, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
+import { FullTitle } from '../_helpers';
 import { accountService, alertService } from '../_services';
 
 function Register({ history }) {
@@ -52,66 +55,104 @@ function Register({ history }) {
 
     return (
         <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
-            {({ errors, touched, isSubmitting }) => (
-                <Form>
-                    <h3 className="card-header">Register</h3>
-                    <div className="card-body">
-                        <div className="form-group">
-                            <label>Title</label>
-                            <Field name="title" as="select" autoComplete="honorific-prefix" className={'form-control' + (errors.title && touched.title ? 'is-invalid' : '')}>
-                                <option value=""></option>
-                                <option value="Mr">Mr</option>
-                                <option value="Mrs">Mrs</option>
-                                <option value="Miss">Miss</option>
-                                <option value="Ms">Ms</option>
-                            </Field>
-                            <ErrorMessage name="title" component="div" className="invalid-feedback" />
-                        </div>
-                        <div className="form-row">
-                            <div className="form-group col">
-                                <label>First Name</label>
-                                <Field name="firstName" type="text" autoComplete="given-name" className={'form-control' + (errors.firstName && touched.firstName ? ' is-invalid' : '')} />
-                                <ErrorMessage name="firstName" component="div" className="invalid-feedback" />
-                            </div>
-                            <div className="form-group col">
-                                <label>Last Name</label>
-                                <Field name="lastName" type="text" autoComplete="family-name" className={'form-control' + (errors.lastName && touched.lastName ? ' is-invalid' : '')} />
-                                <ErrorMessage name="lastName" component="div" className="invalid-feedback" />
-                            </div>
-                        </div>                        
-                        <div className="form-group">
-                            <label>Email</label>
-                            <Field name="email" type="email" autoComplete="email" className={'form-control' + (errors.email && touched.email ? 'is-invalid' : '')} />
-                            <ErrorMessage name="email" component="div" className="invalid-feedback" />
-                        </div>
-                        <div className="form-row">
-                            <div className="form-group col">
-                                <label>Password</label>
-                                <Field name="password" type="password" autoComplete="new-password" className={'form-control' + (errors.password && touched.password ? ' is-invalid' : '')} />
-                                <ErrorMessage name="password" component="div" className="invalid-feedback" />
-                            </div>
-                            <div className="form-group col">
-                                <label>Confirm Password</label>
-                                <Field name="confirmPassword" type="password" autoComplete="new-password" className={'form-control' + (errors.confirmPassword && touched.confirmPassword ? ' is-invalid' : '')} />
-                                <ErrorMessage name="confirmPassword" component="div" className="invalid-feedback" />
-                            </div>
-                        </div>
+            {({ handleSubmit, handleChange, handleBlur, values, isValid, errors, touched, isSubmitting }) => (
+                <>
+                    <Helmet>
+                        <title>{FullTitle('Sign up now!')}</title>
+                    </Helmet>
+                    <h1 className="text-center">Sign Up!</h1>
+                    <Form noValidate onSubmit={handleSubmit}>                                                
+                        <Form.Row>
+                            <Form.Group as={Col} sm={2}>
+                                <Form.Label>Salutation:</Form.Label>
+                                <Field name="title" as="select" autoComplete="honorific-prefix" className={'form-control' + (errors.title && touched.title ? 'is-invalid' : '')}>
+                                    <option value=""></option>
+                                    <option value="Mr">Mr</option>
+                                    <option value="Mrs">Mrs</option>
+                                    <option value="Miss">Miss</option>
+                                    <option value="Ms">Ms</option>
+                                </Field>
+                                <ErrorMessage name="title" component="div" className="invalid-feedback" />
+                            </Form.Group>
+                            <Form.Group as={Col} sm={5}>
+                                <Form.Label>First Name:</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    name="firstName"
+                                    value={values.firstName}
+                                    onChange={handleChange}
+                                    autoComplete="given-name"
+                                    isInvalid={!touched.firstName && errors.firstName}
+                                />
+                                <Form.Control.Feedback type="invalid">{errors.firstName}</Form.Control.Feedback>
+                            </Form.Group>
+                            <Form.Group as={Col} sm={5}>
+                                <Form.Label>Last Name:</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    name="lastName"
+                                    value={values.lastName}
+                                    onChange={handleChange}
+                                    autoComplete="family-name"
+                                    isInvalid={!touched.lastName && errors.lastName}
+                                />
+                                <Form.Control.Feedback type="invalid">{errors.lastName}</Form.Control.Feedback>
+                            </Form.Group>
+                        </Form.Row>
+                        <Form.Group>
+                            <Form.Label>Email:</Form.Label>
+                            <Form.Control
+                                type="email"
+                                name="email"
+                                value={values.email}
+                                onChange={handleChange}
+                                autoComplete="email"
+                                isInvalid={!touched.email && errors.email}
+                            />
+                            <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
+                        </Form.Group>
+                        <Form.Row>
+                            <Form.Group as={Col}>
+                                <Form.Label>Password:</Form.Label>
+                                <Form.Control
+                                    type="password"
+                                    name="password"
+                                    value={values.password}
+                                    onChange={handleChange}
+                                    autoComplete="new-password"
+                                    isInvalid={!touched.password && errors.password}
+                                />
+                                <Form.Control.Feedback type="invalid">{errors.password}</Form.Control.Feedback>
+                            </Form.Group>
+                            <Form.Group as={Col}>
+                                <Form.Label>Confirm Password:</Form.Label>
+                                <Form.Control
+                                    type="password"
+                                    name="password"
+                                    value={values.password}
+                                    onChange={handleChange}
+                                    autoComplete="new-password"
+                                    isInvalid={!touched.password && errors.password}
+                                />
+                                <Form.Control.Feedback type="invalid">{errors.password}</Form.Control.Feedback>
+                            </Form.Group>
+                        </Form.Row>
                         <div className="form-group form-check">
                             <Field type="checkbox" name="acceptTerms" id="acceptTerms" className={'form-check-input ' + (errors.acceptTerms && touched.acceptTerms ? ' is-invalid' : '')} />
                             <label htmlFor="acceptTerms" className="form-check-label">
                                 Accept Terms and Conditions
-                            </label>
+                        </label>
                             <ErrorMessage name="acceptTerms" component="div" className="invalid-feedback" />
                         </div>
                         <div className="form-group">
                             <button type="submit" disabled={isSubmitting} className="btn btn-primary">
                                 {isSubmitting && <span className="spinner-border spinner-border-sm mr-1"></span>}
-                                Register
-                            </button>
+                            Register
+                        </button>
                             <Link to="login" className="btn btn-link">Cancel</Link>
                         </div>
-                    </div>                    
-                </Form>
+                    </Form>
+                </>
             )}
         </Formik>
     );

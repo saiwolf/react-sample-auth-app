@@ -24,7 +24,7 @@ function Account({ history, match }) {
     return (
         <Container>
             <Row>
-                <Col className="mt-3" sm={8, { offset: 2 }}>                    
+                <Col sm={8, { offset: 2 }}>                    
                     <Switch>
                         <Route path={`${path}/login`} component={Login} />
                         <Route path={`${path}/register`} component={Register} />
